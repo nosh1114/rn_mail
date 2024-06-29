@@ -27,6 +27,10 @@ export default [
 			}
 		}
 	},
+		{"parserOptions": {
+			"ecmaVersion": 13
+		}
+	},
 	{
 		ignores: ['build/', '.svelte-kit/', 'dist/']
 	}
