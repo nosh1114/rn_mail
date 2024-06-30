@@ -28,19 +28,23 @@ datasource db {
 model Professor {
   id                Int       @id @default(autoincrement())
   name              String
-  department        String
   email             String    @unique
   profilePictureUrl String    @map("profile_picture_url")
-  emails            Email[]
-  @@map("professors")
+  labUrl            String    @map("lab_url")
+  labName           String    @map("lab_name")
+  labPlace          String    @map("lab_place")
+  departmentId      Int       @map("department_id")
+
+  Department       Department    @relation(fields: [departmentId], references: [id], onDelete: Cascade)
+  // この下の名前で呼び出される。
+  @@map("professor")
 }
 
-model Email {
-  id           Int       @id @default(autoincrement())
-  professorId  Int       @map("professor_id")
-  subject      String
-  body         String
-  sentAt       DateTime  @default(now()) @map("sent_at")
-  professor    Professor @relation(fields: [professorId], references: [id])
-  @@map("emails")
+model Department {
+  id                Int       @id @default(autoincrement())
+  name        String @unique
+  abbreviationName  String @map("abbreviation_name")
+  
+  professor  Professor[]
+  @@map("department")
 }

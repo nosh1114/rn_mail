@@ -4,21 +4,22 @@ export type Generated<T> = T extends ColumnType<infer S, infer I, infer U>
   : ColumnType<T, T | undefined, T>;
 export type Timestamp = ColumnType<Date, Date | string, Date | string>;
 
-export type Email = {
+export type Department = {
     id: Generated<number>;
-    professorId: number;
-    subject: string;
-    body: string;
-    sentAt: Generated<Timestamp>;
+    name: string;
+    abbreviationName: string;
 };
 export type Professor = {
     id: Generated<number>;
     name: string;
-    department: string;
     email: string;
     profilePictureUrl: string;
+    labUrl: string;
+    labName: string;
+    labPlace: string;
+    departmentId: number;
 };
 export type DB = {
-    emails: Email;
-    professors: Professor;
+    department: Department;
+    professor: Professor;
 };
