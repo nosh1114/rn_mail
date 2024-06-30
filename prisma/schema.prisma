@@ -8,6 +8,17 @@ generator client {
   provider = "prisma-client-js"
 }
 
+generator kysely {
+  // Kysely用の型定義を出力するgenerator
+  provider = "prisma-kysely"
+  // 出力先ディレクトリ
+  output       = "../src/lib/server/database"
+  // ファイル名
+  fileName     = "types.ts"
+  // クエリ時にcamelCaseで扱えるプラグイン用に有効化
+  camelCase    = true
+}
+
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
