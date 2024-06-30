@@ -22,15 +22,15 @@ generator kysely {
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
-  directUrl = env("DIRECT_URL")
+  directUrl = env("VITE_DIRECT_URL")
 }
+
 model Professor {
   id                Int       @id @default(autoincrement())
   name              String
   department        String
   email             String    @unique
   profilePictureUrl String    @map("profile_picture_url")
-  researchAreas     String    @map("research_areas")
   emails            Email[]
   @@map("professors")
 }
