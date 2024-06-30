@@ -1,9 +1,10 @@
 import { Kysely, PostgresDialect, CamelCasePlugin } from 'kysely';
 import pkg from 'pg';
 import type { DB } from './types';
-import { DIRECT_URL as connectionString } from '$env/static/private';
 
 const { Pool } = pkg;
+
+const connectionString = import.meta.env.VITE_DIRECT_URL;
 
 if (!connectionString) {
   throw new Error('データベースの接続文字列が設定されていません。');
