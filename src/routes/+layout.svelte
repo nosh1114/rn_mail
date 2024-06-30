@@ -1,6 +1,6 @@
-<script>
+<script src="../path/to/flowbite/dist/flowbite.min.js">
     import "../app.css";
-  </script>
+</script>
   
   <header class="flex items-center justify-between px-6 py-4 bg-black">
     <h1 class="text-2xl font-bold text-white">Tech Blog</h1>
