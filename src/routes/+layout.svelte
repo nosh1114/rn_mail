@@ -1,7 +1,10 @@
 <script src="../path/to/flowbite/dist/flowbite.min.js">
     import "../app.css";
 </script>
-  
+  <svelte:head>
+    <title>RnMails</title>
+    <meta name="description" content="教授のメールを探しやすくなるアプリです" />
+  </svelte:head>
   <header class="flex items-center justify-between px-6 py-4 bg-indigo-500">
     <h1 class="text-2xl font-bold text-white">RnMails</h1>
     <nav class="flex gap-4">
