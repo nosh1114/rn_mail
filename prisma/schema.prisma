@@ -36,7 +36,7 @@ model Professor {
   departmentId      Int       @map("department_id")
 
   Department       Department    @relation(fields: [departmentId], references: [id], onDelete: Cascade)
-  // この下の名前で呼び出される。
+  // この下の名前で呼び出される。ここに苦しめられた。
   @@map("professor")
 }
 
