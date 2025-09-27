@@ -1,50 +1,39 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
 generator client {
   provider = "prisma-client-js"
 }
 
 generator kysely {
-  // Kysely用の型定義を出力するgenerator
-  provider = "prisma-kysely"
-  // 出力先ディレクトリ
-  output       = "../src/lib/server/database"
-  // ファイル名
-  fileName     = "types.ts"
-  // クエリ時にcamelCaseで扱えるプラグイン用に有効化
-  camelCase    = true
+  provider  = "prisma-kysely"
+  output    = "../src/lib/server/database"
+  camelCase = "true"
+  fileName  = "types.ts"
 }
 
 datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
   directUrl = env("VITE_DIRECT_URL")
 }
 
 model Professor {
-  id                Int       @id @default(autoincrement())
+  id                Int        @id @default(autoincrement())
   name              String
-  email             String    @unique
-  profilePictureUrl String    @map("profile_picture_url")
-  labUrl            String    @map("lab_url")
-  labName           String    @map("lab_name")
-  labPlace          String    @map("lab_place")
-  departmentId      Int       @map("department_id")
+  email             String     @unique
+  profilePictureUrl String     @map("profile_picture_url")
+  labUrl            String     @map("lab_url")
+  labName           String     @map("lab_name")
+  labPlace          String     @map("lab_place")
+  departmentId      Int        @map("department_id")
+  Department        Department @relation(fields: [departmentId], references: [id], onDelete: Cascade)
 
-  Department       Department    @relation(fields: [departmentId], references: [id], onDelete: Cascade)
-  // この下の名前で呼び出される。
   @@map("professor")
 }
 
 model Department {
-  id                Int       @id @default(autoincrement())
-  name        String @unique
-  abbreviationName  String @map("abbreviation_name")
-  
-  professor  Professor[]
+  id               Int         @id @default(autoincrement())
+  name             String      @unique
+  abbreviationName String      @map("abbreviation_name")
+  professor        Professor[]
+
   @@map("department")
 }
