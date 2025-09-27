@@ -4,7 +4,7 @@ import type { DB } from './types';
 
 const { Pool } = pkg;
 
-const connectionString = import.meta.env.VITE_DIRECT_URL;
+const connectionString = import.meta.env.DIRECT_URL;
 
 if (!connectionString) {
   throw new Error('データベースの接続文字列が設定されていません。');
